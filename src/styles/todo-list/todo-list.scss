@@ -1,0 +1,200 @@
+$color-border-active: #292323;
+$color-text-todo: #949494;
+$color-text-danger: #c18585;
+
+@mixin setBorderActive {
+    border: 2px solid $color-border-active;
+}
+
+.todo {
+    width: 688px;
+    font-size: 20px;
+    margin: auto;
+
+    h1 {
+        font-weight: 200;
+        text-align: center;
+        -webkit-text-rendering: optimizeLegibility;
+        -moz-text-rendering: optimizeLegibility;
+        text-rendering: optimizeLegibility;
+        width: 100%;
+        margin: 16px 0;
+    }
+
+    button {
+        padding: 4px 8px;
+        border-radius: 8px;
+        cursor: pointer;
+        &:hover {
+            border-color: $color-border-active !important;
+        }
+    }
+
+    &__header {
+        position: relative;
+        display: flex;
+        &--input-title {
+            width: 100%;
+            padding: 16px 16px 16px 56px;
+            font-size: 20px;
+        }
+
+        &--complete-action {
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: none;
+            border-radius: 0;
+            cursor: pointer;
+            height: 60px;
+        }
+
+        &--complete-all {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 56px;
+            cursor: pointer;
+
+            &::before {
+                color: $color-text-todo;
+                content: "❯";
+                display: inline-block;
+                font-size: 22px;
+                -webkit-transform: rotate(90deg);
+                transform: rotate(90deg);
+            }
+        }
+    }
+
+    .todo__header--complete-checkbox:active ~ .todo__header--complete-all {
+        @include setBorderActive;
+    }
+
+    &__list {
+        padding: 0;
+    }
+    
+    &__item {
+        list-style: none;
+
+        &--edit {
+            width: 100%;
+            height: 33px;
+            padding: 8px;
+            @include setBorderActive;
+        }
+
+        button, &--delete-todo {
+            color: $color-text-todo;
+            padding: 0 !important;
+            width: 32px;
+            height: 32px;
+            position: relative;
+
+            &:hover,
+            &:focus {
+                color: $color-text-danger;
+                border-color: $color-text-danger !important;
+            }
+
+            &:focus-visible {
+                border-color: $color-text-danger !important;
+                outline: 4px auto $color-text-danger !important;
+            }
+
+            &::after {
+                content: 'x';
+                display: block;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                -webkit-transform: translate(-50%, -50%);
+                width: 32px;
+                height: 32px;
+            }
+        }
+    
+        &--infor {
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #ededed;
+            padding: 8px 0;
+
+            &:hover {
+                & .todo__item--delete-todo {
+                    display: block;
+                }
+            }
+        }
+
+        &--infor-completed {
+            & .todo__item--title {
+                text-decoration: line-through;
+                color: $color-text-todo;
+            }
+        }
+    
+        &--checkbox {
+            border-radius: 40px;
+        }
+
+        &--label {
+            background-image: url("data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2240%22%20height%3D%2240%22%20viewBox%3D%22-10%20-18%20100%20135%22%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2250%22%20fill%3D%22none%22%20stroke%3D%22%23949494%22%20stroke-width%3D%223%22/%3E%3C/svg%3E");
+            background-position: 0;
+            background-repeat: no-repeat;
+            color: #484848;
+            display: block;
+            font-weight: 400;
+            width: 40px;
+            height: 40px;
+            transition: color .4s;
+            word-break: break-all;
+            cursor: pointer;
+        }
+
+        .todo__item--checkbox:checked + .todo__item--label {
+            background-image: url("data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2240%22%20height%3D%2240%22%20viewBox%3D%22-10%20-18%20100%20135%22%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2250%22%20fill%3D%22none%22%20stroke%3D%22%2359A193%22%20stroke-width%3D%223%22%2F%3E%3Cpath%20fill%3D%22%233EA390%22%20d%3D%22M72%2025L42%2071%2027%2056l-4%204%2020%2020%2034-52z%22%2F%3E%3C%2Fsvg%3E");
+        }
+    
+        &--title {
+            flex-grow: 1;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            margin: 0 0 0 16px;
+            text-align: left;
+            cursor: pointer;
+        }
+    }
+
+    &__footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    &__filter {
+        flex-grow: 1;
+        display: flex;
+        justify-content: center;
+
+        &--item {
+            &:not(:last-child) {
+                margin-right: 4px;
+            }
+
+            &.active {
+                @include setBorderActive;
+            }
+        }
+    }
+
+    .d-none {
+        display: none;
+    }
+}
+
+
