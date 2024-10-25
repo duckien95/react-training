@@ -1,3 +1,4 @@
+$color-border-default: #ededed;
 $color-border-active: #292323;
 $color-text-todo: #949494;
 $color-text-danger: #c18585;
@@ -30,6 +31,10 @@ $color-text-danger: #c18585;
         }
     }
 
+    &__body {
+        display: flex;
+    }
+
     &__header {
         position: relative;
         display: flex;
@@ -37,6 +42,7 @@ $color-text-danger: #c18585;
             width: 100%;
             padding: 16px 16px 16px 56px;
             font-size: 20px;
+            border: 1px solid $color-border-default;
         }
 
         &--complete-action {
@@ -73,10 +79,13 @@ $color-text-danger: #c18585;
     }
 
     &__list {
+        flex-grow: 1;
         padding: 0;
+        margin: 0;
     }
     
     &__item {
+        display: flex;
         list-style: none;
 
         &--edit {
@@ -118,10 +127,13 @@ $color-text-danger: #c18585;
         }
     
         &--infor {
+            width: 100%;
             display: flex;
             align-items: center;
-            border-bottom: 1px solid #ededed;
-            padding: 8px 0;
+            border-style: solid;
+            border-color: $color-border-default;
+            border-width: 0 1px 1px 1px;
+            padding: 8px 8px 8px 0;
 
             &:hover {
                 & .todo__item--delete-todo {
@@ -174,6 +186,8 @@ $color-text-danger: #c18585;
         display: flex;
         align-items: center;
         justify-content: space-between;
+        border: 1px solid $color-border-default;
+        padding: 8px;
     }
 
     &__filter {
