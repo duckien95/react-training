@@ -23,7 +23,7 @@ $color-text-danger: #c18585;
     }
 
     button {
-        padding: 4px 8px;
+        padding: 8px;
         border-radius: 8px;
         cursor: pointer;
         &:hover {
@@ -93,6 +93,7 @@ $color-text-danger: #c18585;
             height: 33px;
             padding: 8px;
             @include setBorderActive;
+            font-size: 20px;
         }
 
         button, &--delete-todo {
